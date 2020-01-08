@@ -31,7 +31,7 @@ class DockerLog:
         params = ChainMap(forced_params, params, default_params)
         try:
             self.response = await self.docker._do_query(
-                "containers/{self.container._id}/logs".format(self=self), params=params
+                "containers/{self.container._id}/logs".format(self=self), method='GET', params=params
             )
             while True:
                 msg = await self.response.content.readline()
