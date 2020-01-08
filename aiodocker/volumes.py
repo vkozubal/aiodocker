@@ -27,8 +27,8 @@ class DockerVolume:
         return data
 
     async def delete(self):
-        response = await self.docker._query(
+        async with self.docker._query(
             "volumes/{self.name}".format(self=self), method="DELETE"
-        )
-        await response.release()
+        ):
+            pass
         return

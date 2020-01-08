@@ -30,7 +30,7 @@ class DockerLog:
         default_params = {"stdout": True, "stderr": True}
         params = ChainMap(forced_params, params, default_params)
         try:
-            self.response = await self.docker._query(
+            self.response = await self.docker._do_query(
                 "containers/{self.container._id}/logs".format(self=self), params=params
             )
             while True:
